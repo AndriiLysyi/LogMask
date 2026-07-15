@@ -10,6 +10,10 @@ public sealed class CardMaskingProcessor
     private const int TimeStampLength = 25;
     private const int PrefixLength = TimeStampLength + 3;
 
+    private const int TimestampStart = 1;
+    private const char OpenBracket = '[';
+    private const char CloseBracket = ']';
+
     private static ReadOnlySpan<char> TimeStampFormat =>
         "yyyy-MM-ddTHH:mm:ss.ffffZ";
     
@@ -51,32 +55,36 @@ public sealed class CardMaskingProcessor
             state,
             static (destination, currentState) =>
             {
-                destination[0] = '[';
-                var timestampDestination = destination.Slice(1, TimeStampLength);
-                
-                var formatted = currentState.UtcTimestamp.TryFormat(
-                    timestampDestination,
-                    out var formattedTimestamp,
-                    TimeStampFormat,
-                    CultureInfo.InvariantCulture);
-                
-                if (!formatted || formattedTimestamp != TimeStampLength)
-                {
-                    throw new InvalidOperationException("UTC formatting failed.");
-                }
-                
-                destination[TimeStampLength + 1] = ']';
-                destination[TimeStampLength + 2] = ' ';
-                
-                var logDestination = destination.Slice(PrefixLength);
+                WritePrefix(destination, currentState.UtcTimestamp);
+
                 var source = currentState.Log.AsSpan();
+                var logDestination = destination.Slice(PrefixLength);
                 
                 source.CopyTo(logDestination);
-       
                 MaskCardCandidates(source, logDestination, currentState.Options);
             });
     }
+    
+    private static void WritePrefix(Span<char> destination, DateTimeOffset utcTimestamp)
+    {
+        destination[0] = OpenBracket;
 
+        var timestampDestination = destination.Slice(TimestampStart, TimeStampLength);
+        var success = utcTimestamp.TryFormat(
+            timestampDestination,
+            out var charsWritten,
+            TimeStampFormat,
+            CultureInfo.InvariantCulture);
+
+        if (!success || charsWritten != TimeStampLength)
+        {
+            throw new InvalidOperationException("UTC formatting failed.");
+        }
+
+        destination[TimestampStart + TimeStampLength] = CloseBracket;
+        destination[TimestampStart + TimeStampLength + 1] = ' ';
+    }
+    
     private static void MaskCardCandidates(
         ReadOnlySpan<char> source,
         Span<char> destination,
