@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogMask.Core", "src\LogMask.Core\LogMask.Core.csproj", "{53AC67EF-9C2E-41A7-A7A5-04BEA4E68CF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogMask.Core.Tests", "tests\LogMask.Core.Tests\LogMask.Core.Tests.csproj", "{0E859410-0DEA-4C89-97BF-01AA4FC7B43E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogMaskBenchmarks", "demo\LogMaskBenchmarks\LogMaskBenchmarks.csproj", "{A1A92E83-6FB7-4611-A2D4-75E22287ABF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53AC67EF-9C2E-41A7-A7A5-04BEA4E68CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53AC67EF-9C2E-41A7-A7A5-04BEA4E68CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53AC67EF-9C2E-41A7-A7A5-04BEA4E68CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53AC67EF-9C2E-41A7-A7A5-04BEA4E68CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E859410-0DEA-4C89-97BF-01AA4FC7B43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E859410-0DEA-4C89-97BF-01AA4FC7B43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E859410-0DEA-4C89-97BF-01AA4FC7B43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E859410-0DEA-4C89-97BF-01AA4FC7B43E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1A92E83-6FB7-4611-A2D4-75E22287ABF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1A92E83-6FB7-4611-A2D4-75E22287ABF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1A92E83-6FB7-4611-A2D4-75E22287ABF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1A92E83-6FB7-4611-A2D4-75E22287ABF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
